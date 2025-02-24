@@ -1,0 +1,49 @@
+import openai
+
+# Set up the OpenAI API key (you should replace this with your actual key)
+openai.api_key = "your_openai_api_key_here"
+
+# Define the prompt to send to the GenAI
+prompt = """
+Please create a machine learning script using TensorFlow to perform sentiment analysis on the IMDB movie reviews dataset. The goal is to build a model that classifies movie reviews as either positive or negative. The dataset is pre-processed as follows:
+
+1. **Dataset**: Load the IMDB dataset, which contains movie reviews, with a vocabulary size limit of 10,000 unique words. Reviews should be padded to a fixed length of 200 words.
+   
+2. **Model Architecture**:
+   - Create a **Bidirectional LSTM (Bi-LSTM)** model.
+   - Use an **Embedding layer** with a vocabulary size of 10,000 and embedding dimension of 128.
+   - Add a **Bidirectional LSTM layer** with 64 units. Set `return_sequences=True` so the LSTM layer outputs sequences that will be processed by the next layer.
+   - Add a **Global Max Pooling layer** after the LSTM to reduce the sequence length and extract the most important features.
+   - Use a **Dropout layer** with a rate of 0.5 to prevent overfitting.
+   - The output layer should be a **Dense layer** with a **sigmoid activation function**, which outputs a binary classification (positive or negative).
+
+3. **Compilation**:
+   - Use the **binary cross-entropy** loss function, as the task is binary classification.
+   - Use the **Adam optimizer** for training.
+   - Track **accuracy** as the evaluation metric.
+
+4. **Callbacks**:
+   - Implement **EarlyStopping** to halt training when the validation loss stops improving for 3 consecutive epochs, and restore the best weights.
+   - Use **ModelCheckpoint** to save the best model based on the validation loss.
+
+5. **Training**:
+   - Train the model for 12 epochs with a **batch size of 32**.
+   - Use **tf.data.Dataset** to create the training and validation datasets for better performance during training (with `prefetch` for optimization).
+   
+6. **Evaluation**:
+   - Print out the **training loss** and **training accuracy** after training.
+   - Plot the **training loss** and **accuracy** over epochs using Matplotlib to visualize the model's performance.
+
+The script should be fully functional and should follow these instructions to replicate the analysis and model training process described above.
+"""
+
+# Generate the response using OpenAI GPT model
+response = openai.Completion.create(
+  model="gpt-4",  # Or any other available model
+  prompt=prompt,
+  max_tokens=1500,  # Adjust depending on how long the response needs to be
+  temperature=0.7  # Adjust creativity/variance in the response
+)
+
+# Output the response
+print(response.choices[0].text.strip())
