@@ -60,3 +60,8 @@ pip install tensorflow numpy matplotlib
 - Clone this repository.
 - Ensure the IMDB dataset is available (TensorFlow automatically downloads it).
 - Run the Python script to train the model.
+
+**Accuracy Improvement using Bidirectional LSTM**
+
+![image](https://github.com/user-attachments/assets/821a5599-9172-4dda-9f66-b0dad623a2bf)
+
