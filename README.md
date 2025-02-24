@@ -65,3 +65,31 @@ pip install tensorflow numpy matplotlib
 
 ![image](https://github.com/user-attachments/assets/821a5599-9172-4dda-9f66-b0dad623a2bf)
 
+**Why Bidirectional LTSM?**
+
+1. Capturing Context from Both Directions
+
+Unlike standard LSTM, which processes text in only one direction (left to right or right to left), BiLSTM processes input sequences forward and backward.
+This helps understand word dependencies more effectively, which is crucial in sentiment analysis where context can change meaning (e.g., "not very good" vs. "very good").
+
+2. Improved Sentiment Classification for Complex Sentences
+
+Sentences with negations, sarcasm, or long-range dependencies are better handled by BiLSTM.
+Example: "I thought the movie would be bad, but it was actually amazing."
+Standard LSTM may misinterpret "bad" early on.
+BiLSTM understands the full sentence context before making a decision.
+
+3. More Accurate Word Representations
+
+Words can have different meanings based on context (e.g., *"bank" as a financial institution vs. riverbank).
+BiLSTM considers both previous and future words, leading to richer word embeddings and better sentiment detection.
+
+4. Works Well with Pre-trained Embeddings (Word2Vec, GloVe, BERT)
+
+BiLSTM can be combined with word embeddings to improve accuracy.
+Pre-trained embeddings provide semantic meaning, while BiLSTM captures contextual relationships.
+
+5. Better Handling of Long Sentences
+
+Compared to traditional RNNs, which suffer from the vanishing gradient problem, LSTMs (and BiLSTMs) retain long-term dependencies better.
+This is useful for sentiment analysis on long-form reviews, social media posts, or articles.
